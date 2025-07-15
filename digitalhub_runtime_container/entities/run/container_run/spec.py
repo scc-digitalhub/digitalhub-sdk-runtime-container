@@ -37,6 +37,7 @@ class RunSpecContainerRun(RunSpec):
         replicas: int | None = None,
         service_ports: list | None = None,
         service_type: str | None = None,
+        service_name: str | None = None,
         instructions: dict | None = None,
         run_as_user: int | None = None,
         run_as_group: int | None = None,
@@ -71,6 +72,7 @@ class RunSpecContainerRun(RunSpec):
         self.replicas = replicas
         self.service_ports = service_ports
         self.service_type = service_type
+        self.service_name = service_name
         self.instructions = instructions
         self.run_as_user = run_as_user
         self.run_as_group = run_as_group
@@ -99,6 +101,7 @@ class RunValidatorContainerRun(RunValidator):
     # Task serve
     service_ports: list[dict] = None
     service_type: str = None
+    service_name: str = None
 
     # Task build
     instructions: list[str] = None

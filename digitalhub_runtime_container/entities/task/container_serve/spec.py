@@ -30,6 +30,7 @@ class TaskSpecContainerServe(TaskSpecFunction):
         replicas: int | None = None,
         service_ports: list | None = None,
         service_type: str | None = None,
+        service_name: str | None = None,
         run_as_user: int | None = None,
         run_as_group: int | None = None,
         fs_group: int | None = None,
@@ -52,6 +53,7 @@ class TaskSpecContainerServe(TaskSpecFunction):
         self.replicas = replicas
         self.service_ports = service_ports
         self.service_type = service_type
+        self.service_name = service_name
         self.run_as_user = run_as_user
         self.run_as_group = run_as_group
         self.fs_group = fs_group
@@ -70,6 +72,9 @@ class TaskValidatorContainerServe(TaskValidatorFunction):
 
     service_ports: list[CorePort] = None
     """Service ports mapper."""
+
+    service_name: str = None
+    """Service name."""
 
     run_as_user: int = Field(default=None, ge=0)
     """RunAsUser."""
