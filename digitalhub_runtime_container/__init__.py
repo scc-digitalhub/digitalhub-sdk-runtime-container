@@ -3,11 +3,14 @@
 # SPDX-License-Identifier: Apache-2.0
 from digitalhub_runtime_container.entities._commons.enums import EntityKinds
 from digitalhub_runtime_container.entities.function.container.builder import FunctionContainerBuilder
-from digitalhub_runtime_container.entities.run.container_run.builder import RunContainerRunBuilder
-from digitalhub_runtime_container.entities.task.container_build.builder import TaskContainerBuildBuilder
-from digitalhub_runtime_container.entities.task.container_deploy.builder import TaskContainerDeployBuilder
-from digitalhub_runtime_container.entities.task.container_job.builder import TaskContainerJobBuilder
-from digitalhub_runtime_container.entities.task.container_serve.builder import TaskContainerServeBuilder
+from digitalhub_runtime_container.entities.run.build.builder import RunContainerRunBuildBuilder
+from digitalhub_runtime_container.entities.run.deploy.builder import RunContainerRunDeployBuilder
+from digitalhub_runtime_container.entities.run.job.builder import RunContainerRunJobBuilder
+from digitalhub_runtime_container.entities.run.serve.builder import RunContainerRunServeBuilder
+from digitalhub_runtime_container.entities.task.build.builder import TaskContainerBuildBuilder
+from digitalhub_runtime_container.entities.task.deploy.builder import TaskContainerDeployBuilder
+from digitalhub_runtime_container.entities.task.job.builder import TaskContainerJobBuilder
+from digitalhub_runtime_container.entities.task.serve.builder import TaskContainerServeBuilder
 
 entity_builders = (
     (EntityKinds.FUNCTION_CONTAINER.value, FunctionContainerBuilder),
@@ -15,7 +18,10 @@ entity_builders = (
     (EntityKinds.TASK_CONTAINER_DEPLOY.value, TaskContainerDeployBuilder),
     (EntityKinds.TASK_CONTAINER_JOB.value, TaskContainerJobBuilder),
     (EntityKinds.TASK_CONTAINER_SERVE.value, TaskContainerServeBuilder),
-    (EntityKinds.RUN_CONTAINER.value, RunContainerRunBuilder),
+    (EntityKinds.RUN_CONTAINER_BUILD.value, RunContainerRunBuildBuilder),
+    (EntityKinds.RUN_CONTAINER_DEPLOY.value, RunContainerRunDeployBuilder),
+    (EntityKinds.RUN_CONTAINER_JOB.value, RunContainerRunJobBuilder),
+    (EntityKinds.RUN_CONTAINER_SERVE.value, RunContainerRunServeBuilder),
 )
 
 try:

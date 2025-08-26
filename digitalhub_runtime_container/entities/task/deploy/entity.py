@@ -11,8 +11,8 @@ from digitalhub.entities.task._base.entity import Task
 if typing.TYPE_CHECKING:
     from digitalhub.entities._base.entity.metadata import Metadata
 
-    from digitalhub_runtime_container.entities.task.container_deploy.spec import TaskSpecContainerDeploy
-    from digitalhub_runtime_container.entities.task.container_deploy.status import TaskStatusContainerDeploy
+    from digitalhub_runtime_container.entities.task.deploy.spec import TaskSpecContainerDeploy
+    from digitalhub_runtime_container.entities.task.deploy.status import TaskStatusContainerDeploy
 
 
 class TaskContainerDeploy(Task):

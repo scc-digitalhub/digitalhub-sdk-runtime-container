@@ -5,31 +5,50 @@
 from __future__ import annotations
 
 from digitalhub.entities._base.runtime_entity.builder import RuntimeEntityBuilder
-from digitalhub.entities.task._base.utils import build_task_actions
+from digitalhub.entities._commons.utils import map_actions
 
-from digitalhub_runtime_container.entities._commons.enums import EntityKinds, TaskActions
+from digitalhub_runtime_container.entities._commons.enums import Actions, EntityKinds
 
 
 class RuntimeEntityBuilderContainer(RuntimeEntityBuilder):
     EXECUTABLE_KIND = EntityKinds.FUNCTION_CONTAINER.value
-    TASKS_KINDS = build_task_actions(
+    TASKS_KINDS = map_actions(
         [
             (
-                EntityKinds.TASK_CONTAINER_JOB.value,
-                TaskActions.JOB.value,
-            ),
-            (
                 EntityKinds.TASK_CONTAINER_BUILD.value,
-                TaskActions.BUILD.value,
+                Actions.BUILD.value,
             ),
             (
-                EntityKinds.TASK_CONTAINER_SERVE.value,
-                TaskActions.SERVE.value,
+                EntityKinds.TASK_CONTAINER_JOB.value,
+                Actions.JOB.value,
             ),
             (
                 EntityKinds.TASK_CONTAINER_DEPLOY.value,
-                TaskActions.DEPLOY.value,
+                Actions.DEPLOY.value,
+            ),
+            (
+                EntityKinds.TASK_CONTAINER_SERVE.value,
+                Actions.SERVE.value,
             ),
         ]
     )
-    RUN_KIND = EntityKinds.RUN_CONTAINER.value
+    RUN_KINDS = map_actions(
+        [
+            (
+                EntityKinds.RUN_CONTAINER_BUILD.value,
+                Actions.BUILD.value,
+            ),
+            (
+                EntityKinds.RUN_CONTAINER_JOB.value,
+                Actions.JOB.value,
+            ),
+            (
+                EntityKinds.RUN_CONTAINER_DEPLOY.value,
+                Actions.DEPLOY.value,
+            ),
+            (
+                EntityKinds.RUN_CONTAINER_SERVE.value,
+                Actions.SERVE.value,
+            ),
+        ]
+    )

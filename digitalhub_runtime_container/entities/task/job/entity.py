@@ -11,13 +11,13 @@ from digitalhub.entities.task._base.entity import Task
 if typing.TYPE_CHECKING:
     from digitalhub.entities._base.entity.metadata import Metadata
 
-    from digitalhub_runtime_container.entities.task.container_build.spec import TaskSpecContainerBuild
-    from digitalhub_runtime_container.entities.task.container_build.status import TaskStatusContainerBuild
+    from digitalhub_runtime_container.entities.task.job.spec import TaskSpecContainerJob
+    from digitalhub_runtime_container.entities.task.job.status import TaskStatusContainerJob
 
 
-class TaskContainerBuild(Task):
+class TaskContainerJob(Task):
     """
-    TaskContainerBuild class.
+    TaskContainerJob class.
     """
 
     def __init__(
@@ -26,11 +26,11 @@ class TaskContainerBuild(Task):
         uuid: str,
         kind: str,
         metadata: Metadata,
-        spec: TaskSpecContainerBuild,
-        status: TaskStatusContainerBuild,
+        spec: TaskSpecContainerJob,
+        status: TaskStatusContainerJob,
         user: str | None = None,
     ) -> None:
         super().__init__(project, uuid, kind, metadata, spec, status, user)
 
-        self.spec: TaskSpecContainerBuild
-        self.status: TaskStatusContainerBuild
+        self.spec: TaskSpecContainerJob
+        self.status: TaskStatusContainerJob

@@ -14,7 +14,7 @@ from digitalhub.factory.factory import factory
 from digitalhub.utils.exceptions import EntityError
 from digitalhub.utils.logger import LOGGER
 
-from digitalhub_runtime_container.entities._commons.enums import TaskActions
+from digitalhub_runtime_container.entities._commons.enums import Actions
 
 if typing.TYPE_CHECKING:
     from digitalhub.entities._base.entity.metadata import Metadata
@@ -60,7 +60,7 @@ class RunContainerRun(Run):
         task_kind = self.spec.task.split("://")[0]
         action = factory.get_action_from_task_kind(self.kind, task_kind)
 
-        if action == TaskActions.SERVE.value:
+        if action == Actions.SERVE.value:
             serve_timeout = 300
             start = time.time()
 

@@ -6,18 +6,18 @@ from __future__ import annotations
 
 import typing
 
-from digitalhub.entities.task._base.entity import Task
+from digitalhub_runtime_container.entities.run._base.entity import RunContainerRun
 
 if typing.TYPE_CHECKING:
     from digitalhub.entities._base.entity.metadata import Metadata
 
-    from digitalhub_runtime_container.entities.task.container_serve.spec import TaskSpecContainerServe
-    from digitalhub_runtime_container.entities.task.container_serve.status import TaskStatusContainerServe
+    from digitalhub_runtime_container.entities.run.job.spec import RunSpecContainerRunJob
+    from digitalhub_runtime_container.entities.run.job.status import RunStatusContainerRunJob
 
 
-class TaskContainerServe(Task):
+class RunContainerRunJob(RunContainerRun):
     """
-    TaskContainerServe class.
+    RunContainerRunJob class.
     """
 
     def __init__(
@@ -26,11 +26,11 @@ class TaskContainerServe(Task):
         uuid: str,
         kind: str,
         metadata: Metadata,
-        spec: TaskSpecContainerServe,
-        status: TaskStatusContainerServe,
+        spec: RunSpecContainerRunJob,
+        status: RunStatusContainerRunJob,
         user: str | None = None,
     ) -> None:
         super().__init__(project, uuid, kind, metadata, spec, status, user)
 
-        self.spec: TaskSpecContainerServe
-        self.status: TaskStatusContainerServe
+        self.spec: RunSpecContainerRunJob
+        self.status: RunStatusContainerRunJob

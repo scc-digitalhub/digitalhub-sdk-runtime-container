@@ -8,12 +8,12 @@ from digitalhub.entities.task._base.builder import TaskBuilder
 
 from digitalhub_runtime_container.entities._base.runtime_entity.builder import RuntimeEntityBuilderContainer
 from digitalhub_runtime_container.entities._commons.enums import EntityKinds
-from digitalhub_runtime_container.entities.task.container_build.entity import TaskContainerBuild
-from digitalhub_runtime_container.entities.task.container_build.spec import (
+from digitalhub_runtime_container.entities.task.build.entity import TaskContainerBuild
+from digitalhub_runtime_container.entities.task.build.spec import (
     TaskSpecContainerBuild,
     TaskValidatorContainerBuild,
 )
-from digitalhub_runtime_container.entities.task.container_build.status import TaskStatusContainerBuild
+from digitalhub_runtime_container.entities.task.build.status import TaskStatusContainerBuild
 
 
 class TaskContainerBuildBuilder(TaskBuilder, RuntimeEntityBuilderContainer):

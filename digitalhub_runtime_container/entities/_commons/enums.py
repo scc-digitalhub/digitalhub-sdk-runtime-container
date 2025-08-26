@@ -17,10 +17,13 @@ class EntityKinds(Enum):
     TASK_CONTAINER_JOB = "container+job"
     TASK_CONTAINER_DEPLOY = "container+deploy"
     TASK_CONTAINER_SERVE = "container+serve"
-    RUN_CONTAINER = "container+run"
+    RUN_CONTAINER_BUILD = "container+build:run"
+    RUN_CONTAINER_JOB = "container+job:run"
+    RUN_CONTAINER_DEPLOY = "container+deploy:run"
+    RUN_CONTAINER_SERVE = "container+serve:run"
 
 
-class TaskActions(Enum):
+class Actions(Enum):
     """
     Task actions.
     """
