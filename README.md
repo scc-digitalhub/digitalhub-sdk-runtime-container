@@ -5,7 +5,7 @@
 
 The Digitalhub SDK Runtime Container is a runtime extension for the [Digitalhub SDK](https://github.com/scc-digitalhub/digitalhub-sdk). It enables you to define remote function that runs in container or deploy container as a service in the Digitalhub platform.
 
-Explore the full documentation at the [link](https://scc-digitalhub.github.io/sdk-docs/runtimes/container/).
+Explore the full documentation at the [link](https://scc-digitalhub.github.io/sdk-docs/reference/runtimes/).
 
 ## Quick start
 
