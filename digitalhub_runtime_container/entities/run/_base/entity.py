@@ -10,7 +10,7 @@ import typing
 import requests
 from digitalhub.entities._commons.enums import State
 from digitalhub.entities.run._base.entity import Run
-from digitalhub.factory.factory import factory
+from digitalhub.factory.entity import entity_factory
 from digitalhub.utils.exceptions import EntityError
 from digitalhub.utils.logger import LOGGER
 
@@ -19,8 +19,8 @@ from digitalhub_runtime_container.entities._commons.enums import Actions
 if typing.TYPE_CHECKING:
     from digitalhub.entities._base.entity.metadata import Metadata
 
-    from digitalhub_runtime_container.entities.run.container_run.spec import RunSpecContainerRun
-    from digitalhub_runtime_container.entities.run.container_run.status import RunStatusContainerRun
+    from digitalhub_runtime_container.entities.run._base.spec import RunSpecContainerRun
+    from digitalhub_runtime_container.entities.run._base.status import RunStatusContainerRun
 
 
 class RunContainerRun(Run):
@@ -58,7 +58,7 @@ class RunContainerRun(Run):
             Run object.
         """
         task_kind = self.spec.task.split("://")[0]
-        action = factory.get_action_from_task_kind(self.kind, task_kind)
+        action = entity_factory.get_action_from_task_kind(self.kind, task_kind)
 
         if action == Actions.SERVE.value:
             serve_timeout = 300
