@@ -131,7 +131,10 @@ def source_post_check(exec: FunctionContainer) -> FunctionContainer:
         return exec
 
     # Check local source
-    if has_local_scheme(code_src) and Path(code_src).is_file():
+    if has_local_scheme(code_src):
+        if not Path(code_src).is_file():
+            raise EntityError(f"Source file {code_src} does not exist.")
+
         # Check text
         if eval_readable_text(code_src):
             exec.spec.source["base64"] = read_source(code_src)
