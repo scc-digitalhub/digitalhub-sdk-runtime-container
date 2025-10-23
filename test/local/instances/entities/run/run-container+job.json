@@ -1,7 +1,7 @@
 {
     "id": "bacf2bca-549c-4653-ab5a-b718f5b9be4a",
     "key": "store://demo-etl/run/container+run/bacf2bca-549c-4653-ab5a-b718f5b9be4a",
-    "kind": "container+run",
+    "kind": "container+job:run",
     "metadata": {
       "name": "bacf2bca-549c-4653-ab5a-b718f5b9be4a",
       "updated_by": "digitalhubdev",

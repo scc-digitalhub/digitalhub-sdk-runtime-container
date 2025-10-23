@@ -1,7 +1,7 @@
 {
     "id": "dc9637f6-63d9-4109-9b95-b6c1547aa935",
     "key": "store://demo-etl/run/container+run/dc9637f6-63d9-4109-9b95-b6c1547aa935",
-    "kind": "container+run",
+    "kind": "container+deploy:run",
     "metadata": {
       "name": "dc9637f6-63d9-4109-9b95-b6c1547aa935",
       "updated_by": "digitalhubdev",

@@ -1,7 +1,7 @@
 {
     "id": "a63790c4-f3f1-45ba-a5e8-7769b8ae8aa1",
     "key": "store://demo-etl/run/container+run/a63790c4-f3f1-45ba-a5e8-7769b8ae8aa1",
-    "kind": "container+run",
+    "kind": "container+serve:run",
     "metadata": {
       "name": "a63790c4-f3f1-45ba-a5e8-7769b8ae8aa1",
       "updated_by": "digitalhubdev",
