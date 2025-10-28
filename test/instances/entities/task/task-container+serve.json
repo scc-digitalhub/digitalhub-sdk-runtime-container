@@ -13,6 +13,7 @@
   "name": "8ed8dd0a-379d-40dd-9a68-0c765d6b143e",
   "project": "demo-etl",
   "spec": {
+    "service_name":"serve-service",
     "service_ports":[],
     "service_type": "NodePort",
     "replicas": 2,
