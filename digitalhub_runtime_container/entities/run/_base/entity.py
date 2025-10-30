@@ -114,12 +114,21 @@ class RunContainerRun(Run):
         requests.Response
             Response from service.
         """
-        if self._context().local:
-            raise EntityError("Invoke not supported locally.")
+        try:
+            base_url = self.status.service.get("url")
+        except AttributeError:
+            raise EntityError(
+                "Url not specified and service not found on run status."
+                " If a service is deploying, use run.wait() or try again later."
+            )
+
+        if url is not None and not url.startswith(base_url):
+            raise EntityError(f"Invalid URL: {url}. It must start with the service URL: {base_url}")
+
         if url is None:
-            try:
-                url = f"http://{self.status.service.get('url')}"
-            except AttributeError:
-                msg = "Url not specified and service not found on run status. If a service is deploying, use run.wait() or try again later."
-                raise EntityError(msg)
+            url = base_url
+
+        if "data" not in kwargs and "json" not in kwargs:
+            method = "GET"
+
         return requests.request(method=method, url=url, **kwargs)
