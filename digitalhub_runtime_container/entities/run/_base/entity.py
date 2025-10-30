@@ -115,18 +115,18 @@ class RunContainerRun(Run):
             Response from service.
         """
         try:
-            base_url = self.status.service.get("url")
+            base_url: str = self.status.service.get("url")
         except AttributeError:
             raise EntityError(
                 "Url not specified and service not found on run status."
                 " If a service is deploying, use run.wait() or try again later."
             )
 
-        if url is not None and not url.startswith(base_url):
+        if url is not None and not url.startswith(base_url.removeprefix("http://").removeprefix("https://")):
             raise EntityError(f"Invalid URL: {url}. It must start with the service URL: {base_url}")
 
         if url is None:
-            url = base_url
+            url = f"http://{base_url}"
 
         if "data" not in kwargs and "json" not in kwargs:
             method = "GET"
