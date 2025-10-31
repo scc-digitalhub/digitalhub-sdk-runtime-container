@@ -122,7 +122,7 @@ class RunContainerRun(Run):
                 " If a service is deploying, use run.wait() or try again later."
             )
 
-        if url is not None and not url.startswith(base_url.removeprefix("http://").removeprefix("https://")):
+        if url is not None and not if url is not None and not url.removeprefix("http://").removeprefix("https://").startswith(base_url)::
             raise EntityError(f"Invalid URL: {url}. It must start with the service URL: {base_url}")
 
         if url is None:
