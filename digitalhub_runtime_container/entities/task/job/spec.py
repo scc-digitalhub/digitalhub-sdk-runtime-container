@@ -45,11 +45,11 @@ class TaskValidatorContainerJob(TaskValidatorFunction):
     TaskValidatorContainerJob validator.
     """
 
-    run_as_user: int = Field(default=None, ge=0)
+    run_as_user: int | None = Field(default=None, ge=0)
     """RunAsUser."""
 
-    run_as_group: int = Field(default=None, ge=0)
+    run_as_group: int | None = Field(default=None, ge=0)
     """RunAsGroup."""
 
-    fs_group: int = Field(default=None, ge=1)
+    fs_group: int | None = Field(default=None, ge=1)
     """FSGroup."""

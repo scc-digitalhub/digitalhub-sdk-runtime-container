@@ -75,28 +75,28 @@ class RunValidatorContainerRun(RunValidator):
     """
 
     # Run parameters
-    args: list[str] = None
+    args: list[str] | None = None
     """Arguments to pass to the entrypoint."""
 
     # Function parameters
-    source: dict = None
-    image: str = None
-    base_image: str = None
-    image_pull_policy: str = None
-    command: str = None
+    source: dict | None = None
+    image: str | None = None
+    base_image: str | None = None
+    image_pull_policy: str | None = None
+    command: str | None = None
 
     # Task deploy
-    replicas: int = None
+    replicas: int | None = None
 
     # Task serve
-    service_ports: list[dict] = None
-    service_type: str = None
-    service_name: str = None
+    service_ports: list[dict] | None = None
+    service_type: str | None = None
+    service_name: str | None = None
 
     # Task build
-    instructions: list[str] = None
+    instructions: list[str] | None = None
 
     # Shared task
-    run_as_user: int = None
-    run_as_group: int = None
-    fs_group: int = None
+    run_as_user: int | None = None
+    run_as_group: int | None = None
+    fs_group: int | None = None

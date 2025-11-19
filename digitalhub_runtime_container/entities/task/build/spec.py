@@ -40,5 +40,5 @@ class TaskValidatorContainerBuild(TaskValidatorFunction):
     TaskValidatorContainerBuild validator.
     """
 
-    instructions: list[str] = None
+    instructions: list[str] | None = None
     """Build instructions."""

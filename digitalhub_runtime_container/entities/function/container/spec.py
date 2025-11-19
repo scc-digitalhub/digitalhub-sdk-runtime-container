@@ -21,7 +21,6 @@ class FunctionSpecContainer(FunctionSpec):
         base_image: str | None = None,
         image_pull_policy: str | None = None,
         command: str | None = None,
-        args: list[str] | None = None,
         source: dict | None = None,
     ) -> None:
         super().__init__()
@@ -38,17 +37,17 @@ class FunctionValidatorContainer(FunctionValidator):
     FunctionValidatorContainer validator.
     """
 
-    image: str = None
+    image: str | None = None
     """Name of the Function's container image."""
 
-    base_image: str = None
+    base_image: str | None = None
     """Function's base container image."""
 
-    image_pull_policy: CorePullPolicy = None
+    image_pull_policy: CorePullPolicy | None = None
     """Function's container image pull policy."""
 
-    command: str = None
+    command: str | None = None
     """Command to run inside the container."""
 
-    source: SourceValidator = None
+    source: SourceValidator | None = None
     """Source code params."""
