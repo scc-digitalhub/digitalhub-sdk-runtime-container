@@ -23,10 +23,6 @@ class RuntimeEntityBuilderContainer(RuntimeEntityBuilder):
                 Actions.JOB.value,
             ),
             (
-                EntityKinds.TASK_CONTAINER_DEPLOY.value,
-                Actions.DEPLOY.value,
-            ),
-            (
                 EntityKinds.TASK_CONTAINER_SERVE.value,
                 Actions.SERVE.value,
             ),
@@ -41,10 +37,6 @@ class RuntimeEntityBuilderContainer(RuntimeEntityBuilder):
             (
                 EntityKinds.RUN_CONTAINER_JOB.value,
                 Actions.JOB.value,
-            ),
-            (
-                EntityKinds.RUN_CONTAINER_DEPLOY.value,
-                Actions.DEPLOY.value,
             ),
             (
                 EntityKinds.RUN_CONTAINER_SERVE.value,
