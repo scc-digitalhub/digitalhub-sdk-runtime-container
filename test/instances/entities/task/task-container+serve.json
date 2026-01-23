@@ -20,10 +20,6 @@
     "fs_group": 1000,
     "run_as_user": 1000,
     "run_as_group": 1000,
-    "priority_class": "test",
-    "runtime_class": "test",
-    "tolerations": [],
-    "affinity": {},
     "profile": "1xa100",
     "volumes": [
       {
@@ -49,12 +45,6 @@
         "gpu": "1"
       },
     "secrets": ["secret-key"],
-    "node_selector": [
-      {
-        "key": "node1",
-        "value": "value1"
-      }
-    ],
     "function": "container://demo-etl/func1a:bbc4c820-6321-4ea8-b57b-85c472cfde09"
   },
   "status": {

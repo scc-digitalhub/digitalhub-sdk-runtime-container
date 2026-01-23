@@ -1,6 +1,6 @@
 {
     "id": "a63790c4-f3f1-45ba-a5e8-7769b8ae8aa1",
-    "key": "store://demo-etl/run/container+run/a63790c4-f3f1-45ba-a5e8-7769b8ae8aa1",
+    "key": "store://demo-etl/run/container+serve:run/a63790c4-f3f1-45ba-a5e8-7769b8ae8aa1",
     "kind": "container+serve:run",
     "metadata": {
       "name": "a63790c4-f3f1-45ba-a5e8-7769b8ae8aa1",
@@ -62,12 +62,6 @@
           "name": "volume2",
           "volume_type": "persistent_volume_claim",
           "mount_path": "/volume2"
-        }
-      ],
-      "node_selector": [
-        {
-          "key": "node1",
-          "value": "value1"
         }
       ]
     },

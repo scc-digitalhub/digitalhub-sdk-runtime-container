@@ -1,6 +1,6 @@
 {
     "id": "8ed8dd0a-379d-40dd-9a68-0c765d6b143e",
-    "key": "store://demo-etl/run/container+run/8ed8dd0a-379d-40dd-9a68-0c765d6b143e",
+    "key": "store://demo-etl/run/container+build:run/8ed8dd0a-379d-40dd-9a68-0c765d6b143e",
     "kind": "container+build:run",
     "metadata": {
       "name": "8ed8dd0a-379d-40dd-9a68-0c765d6b143e",
@@ -54,12 +54,6 @@
       "local_execution": false,
       "args": [
         "main.py"
-      ],
-      "node_selector": [
-        {
-          "key": "node1",
-          "value": "value1"
-        }
       ],
       "task": "container+build://demo-etl/bbc4c820-6321-4ea8-b57b-85c472cfde09",
       "base_image": "debian:1.22.04",
