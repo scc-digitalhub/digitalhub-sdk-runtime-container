@@ -42,7 +42,8 @@
       "resources": {
         "cpu": "1",
         "mem": "1Gi",
-        "gpu": "1"
+        "gpu": "1",
+        "disk": "1Gi"
       },
     "secrets": ["secret-key"],
     "function": "container://demo-etl/func1a:bbc4c820-6321-4ea8-b57b-85c472cfde09"
