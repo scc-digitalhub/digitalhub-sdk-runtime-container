@@ -15,7 +15,7 @@ from digitalhub.utils.logger import LOGGER
 from digitalhub_runtime_container.entities._commons.enums import Actions
 
 if typing.TYPE_CHECKING:
-    from digitalhub.entities._base.entity.metadata import Metadata
+    from digitalhub.entities._base.metadata.entity import Metadata
 
     from digitalhub_runtime_container.entities.run._base.spec import RunSpecContainerRun
     from digitalhub_runtime_container.entities.run._base.status import RunStatusContainerRun

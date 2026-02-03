@@ -12,8 +12,6 @@ from digitalhub.utils.io_utils import write_text
 from digitalhub.utils.uri_utils import has_local_scheme
 
 if typing.TYPE_CHECKING:
-    from digitalhub.entities._base.entity.metadata import Metadata
-
     from digitalhub_runtime_container.entities.function.container.spec import FunctionSpecContainer
     from digitalhub_runtime_container.entities.function.container.status import FunctionStatusContainer
 
@@ -23,18 +21,8 @@ class FunctionContainer(Function):
     FunctionContainer class.
     """
 
-    def __init__(
-        self,
-        project: str,
-        name: str,
-        uuid: str,
-        kind: str,
-        metadata: Metadata,
-        spec: FunctionSpecContainer,
-        status: FunctionStatusContainer,
-        user: str | None = None,
-    ) -> None:
-        super().__init__(project, name, uuid, kind, metadata, spec, status, user)
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
 
         self.spec: FunctionSpecContainer
         self.status: FunctionStatusContainer

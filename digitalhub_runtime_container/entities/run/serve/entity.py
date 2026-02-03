@@ -12,7 +12,7 @@ from digitalhub.utils.exceptions import EntityError
 from digitalhub_runtime_container.entities.run._base.entity import RunContainerRun
 
 if typing.TYPE_CHECKING:
-    from digitalhub.entities._base.entity.metadata import Metadata
+    from digitalhub.entities._base.metadata.entity import Metadata
 
     from digitalhub_runtime_container.entities.run.serve.spec import RunSpecContainerRunServe
     from digitalhub_runtime_container.entities.run.serve.status import RunStatusContainerRunServe
