@@ -9,7 +9,6 @@ import typing
 from digitalhub_runtime_container.entities.run._base.entity import RunContainerRun
 
 if typing.TYPE_CHECKING:
-    from digitalhub.entities._base.metadata.entity import Metadata
 
     from digitalhub_runtime_container.entities.run.job.spec import RunSpecContainerRunJob
     from digitalhub_runtime_container.entities.run.job.status import RunStatusContainerRunJob
@@ -20,17 +19,8 @@ class RunContainerRunJob(RunContainerRun):
     RunContainerRunJob class.
     """
 
-    def __init__(
-        self,
-        project: str,
-        uuid: str,
-        kind: str,
-        metadata: Metadata,
-        spec: RunSpecContainerRunJob,
-        status: RunStatusContainerRunJob,
-        user: str | None = None,
-    ) -> None:
-        super().__init__(project, uuid, kind, metadata, spec, status, user)
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
 
         self.spec: RunSpecContainerRunJob
         self.status: RunStatusContainerRunJob

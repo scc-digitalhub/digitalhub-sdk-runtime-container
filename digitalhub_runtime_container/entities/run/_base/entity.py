@@ -15,7 +15,6 @@ from digitalhub.utils.logger import LOGGER
 from digitalhub_runtime_container.entities._commons.enums import Actions
 
 if typing.TYPE_CHECKING:
-    from digitalhub.entities._base.metadata.entity import Metadata
 
     from digitalhub_runtime_container.entities.run._base.spec import RunSpecContainerRun
     from digitalhub_runtime_container.entities.run._base.status import RunStatusContainerRun
@@ -26,17 +25,8 @@ class RunContainerRun(Run):
     RunContainerRun class.
     """
 
-    def __init__(
-        self,
-        project: str,
-        uuid: str,
-        kind: str,
-        metadata: Metadata,
-        spec: RunSpecContainerRun,
-        status: RunStatusContainerRun,
-        user: str | None = None,
-    ) -> None:
-        super().__init__(project, uuid, kind, metadata, spec, status, user)
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
 
         self.spec: RunSpecContainerRun
         self.status: RunStatusContainerRun
