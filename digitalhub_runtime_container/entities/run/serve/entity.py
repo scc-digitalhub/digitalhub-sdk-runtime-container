@@ -12,7 +12,6 @@ from digitalhub.utils.exceptions import EntityError
 from digitalhub_runtime_container.entities.run._base.entity import RunContainerRun
 
 if typing.TYPE_CHECKING:
-
     from digitalhub_runtime_container.entities.run.serve.spec import RunSpecContainerRunServe
     from digitalhub_runtime_container.entities.run.serve.status import RunStatusContainerRunServe
 

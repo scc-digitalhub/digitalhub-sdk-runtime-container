@@ -9,7 +9,6 @@ import typing
 from digitalhub_runtime_container.entities.run._base.entity import RunContainerRun
 
 if typing.TYPE_CHECKING:
-
     from digitalhub_runtime_container.entities.run.job.spec import RunSpecContainerRunJob
     from digitalhub_runtime_container.entities.run.job.status import RunStatusContainerRunJob
 
