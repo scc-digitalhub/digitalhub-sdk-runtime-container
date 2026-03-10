@@ -24,5 +24,8 @@ try:
     from digitalhub_runtime_container.runtimes.builder import RuntimeContainerBuilder
 
     runtime_builders = ((kind, RuntimeContainerBuilder) for kind in [e.value for e in EntityKinds])
-except ImportError:
+except ImportError as e:
+    from digitalhub.utils.logger.logger import get_logger
+    logger = get_logger(__name__)
+    logger.debug(f"Error importing runtime builders: {e}")
     runtime_builders = tuple()
