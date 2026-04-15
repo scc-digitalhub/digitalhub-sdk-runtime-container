@@ -27,12 +27,12 @@ class TaskSpecContainerJob(TaskSpecFunction):
         **kwargs,
     ) -> None:
         super().__init__(
-            function,
-            volumes,
-            resources,
-            envs,
-            secrets,
-            profile,
+            function=function,
+            volumes=volumes,
+            resources=resources,
+            envs=envs,
+            secrets=secrets,
+            profile=profile,
             **kwargs,
         )
         self.run_as_user = run_as_user
