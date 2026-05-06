@@ -15,18 +15,15 @@
     "name": "func1b",
     "project": "demo-etl",
     "spec": {
-      "args": [
-        "main.py"
-      ],
-      "base_image": "debian:1.22.4",
       "image": "debian:1.22.4",
+      "base_image": "debian:1.22.4",
       "image_pull_policy": "Always",
       "command": "python",
       "source": {
         "source": "zip+s3://my-bucket/functions/func.zip",
-        "lang": "python",
         "handler": "handler",
-        "base64": "ZGVmIGhhbmRsZXIoKToKICAgIHByaW50KCJIZWxsbyB3b3JsZCEiKQ=="
+        "base64": "ZGVmIGhhbmRsZXIoKToKICAgIHByaW50KCJIZWxsbyB3b3JsZCEiKQ==",
+        "lang": "python"
       }
     },
     "status": {

@@ -13,27 +13,18 @@
     "name": "8ed8dd0a-379d-40dd-9a68-0c765d6b143e",
     "project": "demo-etl",
     "spec": {
-      "instructions": [
-        "apt-get update"
-      ],
-      "image": "debian:1.22.04",
-      "profile": "1xa100",
+      "task": "container+build://demo-etl/bbc4c820-6321-4ea8-b57b-85c472cfde09",
+      "function": "container://demo-etl/func1a:bbc4c820-6321-4ea8-b57b-85c472cfde09",
       "volumes": [
         {
-          "name": "volume1",
           "volume_type": "empty_dir",
+          "name": "volume1",
           "mount_path": "/volume1"
         },
         {
-          "name": "volume2",
           "volume_type": "persistent_volume_claim",
+          "name": "volume2",
           "mount_path": "/volume2"
-        }
-      ],
-      "envs": [
-        {
-          "name": "USER",
-          "value": "test"
         }
       ],
       "resources": {
@@ -42,23 +33,31 @@
         "gpu": "1",
         "disk": "1Gi"
       },
+      "envs": [
+        {
+          "name": "USER",
+          "value": "test"
+        }
+      ],
+      "secrets": [
+        "secret-key"
+      ],
+      "profile": "1xa100",
+      "args": [
+        "main.py"
+      ],
       "source": {
         "source": "main.py",
         "handler": "handler",
         "base64": "ZGVmIGhhbmRsZXIoKToKICAgIHByaW50KCJIZWxsbyB3b3JsZCEiKQ==",
         "lang": "python"
       },
-      "secrets": [
-        "secret-key"
-      ],
-      "command": "python",
-      "local_execution": false,
-      "args": [
-        "main.py"
-      ],
-      "task": "container+build://demo-etl/bbc4c820-6321-4ea8-b57b-85c472cfde09",
+      "image": "debian:1.22.04",
       "base_image": "debian:1.22.04",
-      "function": "container://demo-etl/func1a:bbc4c820-6321-4ea8-b57b-85c472cfde09"
+      "command": "python",
+      "instructions": [
+        "apt-get update"
+      ]
     },
     "status": {
       "transitions": [

@@ -13,25 +13,20 @@
     "name": "bacf2bca-549c-4653-ab5a-b718f5b9be4a",
     "project": "demo-etl",
     "spec": {
-      "args": [
-        "main.py"
-      ],
-
-      "image": "debian:1.22.04",
       "task": "container+job://demo-etl/bbc4c820-6321-4ea8-b57b-85c472cfde09",
-      "base_image": "debian:1.22.04",
-      "fs_group": 1000,
       "function": "container://demo-etl/func1a:bbc4c820-6321-4ea8-b57b-85c472cfde09",
-      "profile": "1xa100",
-      "source": {
-        "source": "main.py",
-        "handler": "handler",
-        "base64": "ZGVmIGhhbmRsZXIoKToKICAgIHByaW50KCJIZWxsbyB3b3JsZCEiKQ==",
-        "lang": "python"
-      },
-      "backoff_limit": 3,
-      "command": "python",
-      "local_execution": false,
+      "volumes": [
+        {
+          "volume_type": "empty_dir",
+          "name": "volume1",
+          "mount_path": "/volume1"
+        },
+        {
+          "volume_type": "persistent_volume_claim",
+          "name": "volume2",
+          "mount_path": "/volume2"
+        }
+      ],
       "resources": {
         "cpu": "1",
         "mem": "1Gi",
@@ -47,18 +42,20 @@
       "secrets": [
         "secret-key"
       ],
-      "volumes": [
-        {
-          "name": "volume1",
-          "volume_type": "empty_dir",
-          "mount_path": "/volume1"
-        },
-        {
-          "name": "volume2",
-          "volume_type": "persistent_volume_claim",
-          "mount_path": "/volume2"
-        }
-      ]
+      "profile": "1xa100",
+      "args": [
+        "main.py"
+      ],
+      "source": {
+        "source": "main.py",
+        "handler": "handler",
+        "base64": "ZGVmIGhhbmRsZXIoKToKICAgIHByaW50KCJIZWxsbyB3b3JsZCEiKQ==",
+        "lang": "python"
+      },
+      "image": "debian:1.22.04",
+      "base_image": "debian:1.22.04",
+      "command": "python",
+      "fs_group": 1000
     },
     "status": {
       "state": "RUNNING",

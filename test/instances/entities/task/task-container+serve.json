@@ -13,40 +13,42 @@
   "name": "8ed8dd0a-379d-40dd-9a68-0c765d6b143e",
   "project": "demo-etl",
   "spec": {
-    "service_name":"serve-service",
-    "service_ports":[],
-    "service_type": "NodePort",
-    "replicas": 2,
-    "fs_group": 1000,
-    "run_as_user": 1000,
-    "run_as_group": 1000,
-    "profile": "1xa100",
+    "function": "container://demo-etl/func1a:bbc4c820-6321-4ea8-b57b-85c472cfde09",
     "volumes": [
       {
-        "name": "volume1",
         "volume_type": "empty_dir",
+        "name": "volume1",
         "mount_path": "/volume1"
       },
       {
-        "name": "volume2",
         "volume_type": "persistent_volume_claim",
+        "name": "volume2",
         "mount_path": "/volume2"
       }
     ],
+    "resources": {
+      "cpu": "1",
+      "mem": "1Gi",
+      "gpu": "1",
+      "disk": "1Gi"
+    },
     "envs": [
       {
         "name": "USER",
         "value": "test"
       }
     ],
-      "resources": {
-        "cpu": "1",
-        "mem": "1Gi",
-        "gpu": "1",
-        "disk": "1Gi"
-      },
-    "secrets": ["secret-key"],
-    "function": "container://demo-etl/func1a:bbc4c820-6321-4ea8-b57b-85c472cfde09"
+    "secrets": [
+      "secret-key"
+    ],
+    "profile": "1xa100",
+    "replicas": 2,
+    "service_ports": [],
+    "service_type": "NodePort",
+    "service_name": "serve-service",
+    "run_as_user": 1000,
+    "run_as_group": 1000,
+    "fs_group": 1000
   },
   "status": {
     "transitions": [
