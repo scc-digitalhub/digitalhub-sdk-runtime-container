@@ -23,3 +23,15 @@ class RunContainerRunBuild(RunContainerRun):
 
         self.spec: RunSpecContainerRunBuild
         self.status: RunStatusContainerRunBuild
+
+    @property
+    def image(self) -> str | None:
+        """
+        Get run's image.
+
+        Returns
+        -------
+        str | None
+            The image.
+        """
+        return self.status.outputs.get("image")

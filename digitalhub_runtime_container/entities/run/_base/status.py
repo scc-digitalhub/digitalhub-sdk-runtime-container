@@ -20,7 +20,9 @@ class RunStatusContainerRun(RunStatus):
         k8s: dict | None = None,
         metrics: dict | None = None,
         service: dict | None = None,
+        outputs: dict | None = None,
         **kwargs,
     ) -> None:
         super().__init__(state, message, transitions, k8s, metrics, **kwargs)
         self.service = service
+        self.outputs = outputs
