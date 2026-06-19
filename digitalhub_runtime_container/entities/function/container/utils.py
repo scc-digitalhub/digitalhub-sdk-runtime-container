@@ -14,8 +14,6 @@ from digitalhub.utils.file_utils import eval_zip_type
 from digitalhub.utils.generic_utils import create_archive, encode_string, read_source
 from digitalhub.utils.uri_utils import has_local_scheme
 
-from digitalhub_runtime_container.utils.file_utils import eval_readable_text
-
 if typing.TYPE_CHECKING:
     from digitalhub_runtime_container.entities.function.container.entity import FunctionContainer
 
@@ -146,14 +144,16 @@ def source_post_check(exec: FunctionContainer) -> FunctionContainer:
             exec.spec.source["source"] = dst
             archive_path.unlink()
 
-        # If source is a file, read it and encode it in base64
-        if eval_readable_text(code_src):
-            exec.spec.source["base64"] = read_source(code_src)
-
         # If source is a zip file, upload it and update the source
-        elif eval_zip_type(code_src):
+        if eval_zip_type(code_src):
             dst = build_zip_path(exec, path_src.name)
             get_store(dst).upload(code_src, dst)
             exec.spec.source["source"] = dst
+
+        else:
+            try:
+                exec.spec.source["base64"] = read_source(code_src)
+            except Exception as e:
+                raise EntityError(f"Error reading source {code_src}: {e}")
 
     return exec
