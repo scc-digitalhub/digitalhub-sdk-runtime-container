@@ -145,7 +145,7 @@ def source_post_check(exec: FunctionContainer) -> FunctionContainer:
             archive_path.unlink()
 
         # If source is a zip file, upload it and update the source
-        if eval_zip_type(code_src):
+        elif eval_zip_type(code_src):
             dst = build_zip_path(exec, path_src.name)
             get_store(dst).upload(code_src, dst)
             exec.spec.source["source"] = dst
