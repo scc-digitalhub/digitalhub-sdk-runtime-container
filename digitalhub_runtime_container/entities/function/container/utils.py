@@ -153,7 +153,7 @@ def source_post_check(exec: FunctionContainer) -> FunctionContainer:
         else:
             try:
                 exec.spec.source["base64"] = read_source(code_src)
-            except Exception as e:
+            except (OSError, UnicodeError) as e:
                 raise EntityError(f"Error reading source {code_src}: {e}")
 
     return exec
