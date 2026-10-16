@@ -73,6 +73,21 @@ def new_function_container(
     -------
     FunctionContainer
         Created container function entity.
+
+    Examples
+    --------
+    Create a function that runs a command in a container image:
+
+    ```python
+    import digitalhub as dh
+
+    function = dh.new_function_container(
+        project="my-project",
+        name="container-job",
+        image="ghcr.io/example/container-job:latest",
+        command="python /app/main.py",
+    )
+    ```
     """
     if code is not None and code_src is not None:
         raise ValueError("Only one of 'code' or 'code_src' can be provided.")
