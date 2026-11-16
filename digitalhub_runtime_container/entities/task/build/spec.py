@@ -4,11 +4,10 @@
 
 from __future__ import annotations
 
-from digitalhub.entities.task._base.spec import TaskSpecFunction
+from digitalhub.entities.task._base.spec import BuildSpecMixin, TaskSpecFunction
 
 
-class TaskSpecContainerBuild(TaskSpecFunction):
+class TaskSpecContainerBuild(TaskSpecFunction, BuildSpecMixin):
     """Specification for a container build task."""
 
-    instructions: list[str] | None = None
     """Build instructions."""

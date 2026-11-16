@@ -8,9 +8,11 @@ from digitalhub.entities.task._base.models import CorePort, CoreServiceType
 from digitalhub.entities.task._base.spec import TaskSpecFunction
 from pydantic import Field
 
+from digitalhub_runtime_container.entities.task.job.spec import ContainerRunAsSpecMixin
 
-class TaskSpecContainerServe(TaskSpecFunction):
-    """Specification for a container serving task."""
+
+class ContainerServeSpecMixin(ContainerRunAsSpecMixin):
+    """Spec mixin for container serve action fields."""
 
     replicas: int | None = Field(default=None, ge=0)
     """Number of replicas."""
@@ -24,11 +26,6 @@ class TaskSpecContainerServe(TaskSpecFunction):
     service_name: str | None = None
     """Service name."""
 
-    run_as_user: int | None = Field(default=None, ge=0)
-    """RunAsUser."""
 
-    run_as_group: int | None = Field(default=None, ge=0)
-    """RunAsGroup."""
-
-    fs_group: int | None = Field(default=None, ge=1)
-    """FSGroup."""
+class TaskSpecContainerServe(TaskSpecFunction, ContainerServeSpecMixin):
+    """Specification for a container serving task."""

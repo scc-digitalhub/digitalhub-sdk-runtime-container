@@ -6,6 +6,7 @@ from pydantic import ValidationError
 from digitalhub_runtime_container.entities.function.container.models import SourceValidator
 from digitalhub_runtime_container.entities.function.container.spec import FunctionSpecContainer
 from digitalhub_runtime_container.entities.run.build.spec import RunSpecContainerRunBuild
+from digitalhub_runtime_container.entities.run.job.spec import RunSpecContainerRunJob
 from digitalhub_runtime_container.entities.run.serve.spec import RunSpecContainerRunServe
 from digitalhub_runtime_container.entities.task.build.spec import TaskSpecContainerBuild
 from digitalhub_runtime_container.entities.task.job.spec import TaskSpecContainerJob
@@ -48,18 +49,35 @@ def test_container_task_specs_validate_runtime_fields_and_constraints():
         build_spec(TaskSpecContainerJob, function="function", fs_group=0)
 
 
-def test_container_run_specs_exclude_task_fields():
-    run = build_spec(RunSpecContainerRunBuild, task="task", args=["--verbose"], image="image:latest")
-    assert run.args == ["--verbose"]
+def test_container_run_specs_merge_only_action_fields():
+    build = build_spec(
+        RunSpecContainerRunBuild,
+        task="task",
+        args=["--verbose"],
+        image="image:latest",
+        instructions=["apt-get update"],
+    )
+    job = build_spec(RunSpecContainerRunJob, task="task", run_as_user=1000)
+    serve = build_spec(
+        RunSpecContainerRunServe,
+        task="task",
+        service_type="ClusterIP",
+        run_as_user=1000,
+        replicas=2,
+    )
+
+    assert build.args == ["--verbose"]
+    assert build.instructions == ["apt-get update"]
+    assert job.run_as_user == 1000
+    assert serve.service_type == "ClusterIP"
+    assert serve.run_as_user == 1000
+    assert serve.replicas == 2
 
     with pytest.raises(TypeError, match="instructions"):
-        build_spec(RunSpecContainerRunBuild, task="task", instructions=["apt-get update"])
+        build_spec(RunSpecContainerRunJob, task="task", instructions=["apt-get update"])
 
-    with pytest.raises(TypeError, match="service_type"):
-        build_spec(RunSpecContainerRunServe, task="task", service_type="ClusterIP")
-
-    with pytest.raises(TypeError, match="run_as_user"):
-        build_spec(RunSpecContainerRunServe, task="task", run_as_user=1000)
+    with pytest.raises(TypeError, match="replicas"):
+        build_spec(RunSpecContainerRunJob, task="task", replicas=2)
 
     with pytest.raises(TypeError, match="replicas"):
         build_spec(TaskSpecContainerBuild, function="function", replicas=2)
