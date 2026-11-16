@@ -6,26 +6,13 @@ from __future__ import annotations
 
 from digitalhub.entities.task._base.status import TaskStatus
 
-
-class TaskStatusContainerJob(TaskStatus):
-    """
-    TaskStatusContainerJob class.
-    """
+TaskStatusContainerJob = TaskStatus
 
 
-class TaskStatusContainerDeploy(TaskStatus):
-    """
-    TaskStatusContainerDeploy class.
-    """
+TaskStatusContainerDeploy = TaskStatus
 
 
-class TaskStatusContainerServe(TaskStatus):
-    """
-    TaskStatusContainerServe class.
-    """
+TaskStatusContainerServe = TaskStatus
 
 
-class TaskStatusContainerBuild(TaskStatus):
-    """
-    TaskStatusContainerBuild class.
-    """
+TaskStatusContainerBuild = TaskStatus

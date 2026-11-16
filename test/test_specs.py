@@ -3,6 +3,7 @@ from digitalhub.entities._constructors.spec import build_spec
 from digitalhub.entities.task._base.models import CorePort
 from pydantic import ValidationError
 
+from digitalhub_runtime_container.entities.function.container.builder import FunctionContainerBuilder
 from digitalhub_runtime_container.entities.function.container.models import SourceValidator
 from digitalhub_runtime_container.entities.function.container.spec import FunctionSpecContainer
 from digitalhub_runtime_container.entities.run.build.spec import RunSpecContainerRunBuild
@@ -25,6 +26,21 @@ def test_container_function_spec_validates_nested_source_and_pull_policy():
 
     with pytest.raises(ValidationError):
         build_spec(FunctionSpecContainer, image_pull_policy="sometimes")
+
+
+def test_container_builder_routes_top_level_source_arguments():
+    builder = FunctionContainerBuilder()
+
+    function = builder.build(
+        kind=builder.ENTITY_KIND,
+        project="project",
+        name="function",
+        code="select 1",
+        handler="main",
+    )
+
+    assert function.spec.source.base64 == "c2VsZWN0IDE="
+    assert function.spec.source.handler == "main"
 
 
 def test_container_task_specs_validate_runtime_fields_and_constraints():

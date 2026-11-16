@@ -7,7 +7,7 @@ from __future__ import annotations
 from digitalhub.entities.function._base.spec import FunctionSpec
 from digitalhub.entities.task._base.models import CorePullPolicy
 
-from digitalhub_runtime_container.entities.function.container.models import SourceValidator
+from digitalhub_runtime_container.entities.function.container.models import ContainerSourceCode
 
 
 class FunctionSpecContainer(FunctionSpec):
@@ -25,5 +25,5 @@ class FunctionSpecContainer(FunctionSpec):
     command: str | None = None
     """Command to run inside the container."""
 
-    source: SourceValidator | None = None
+    source: ContainerSourceCode | None = None
     """Source code parameters."""

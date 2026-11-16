@@ -13,17 +13,26 @@ from digitalhub_runtime_container.entities.task.build.builder import TaskContain
 from digitalhub_runtime_container.entities.task.job.builder import TaskContainerJobBuilder
 from digitalhub_runtime_container.entities.task.serve.builder import TaskContainerServeBuilder
 
+try:
+    from digitalhub_runtime_container.runtimes.builder import RuntimeContainerBuilder
+except ImportError as e:
+    from digitalhub.utils.logger.logger import get_logger
+
+    get_logger(__name__).debug(f"Error importing runtime builder: {e}")
+    RuntimeContainerBuilder = None
+
 function_container_plugin = EntityPlugin(
     builder=FunctionContainerBuilder,
     shortcuts=(CrudPlugin(new_function_container),),
+    runtime_builder=RuntimeContainerBuilder,
 )
 
 entity_plugins = (
     function_container_plugin,
-    EntityPlugin(builder=TaskContainerBuildBuilder),
-    EntityPlugin(builder=TaskContainerJobBuilder),
-    EntityPlugin(builder=TaskContainerServeBuilder),
-    EntityPlugin(builder=RunContainerRunBuildBuilder),
-    EntityPlugin(builder=RunContainerRunJobBuilder),
-    EntityPlugin(builder=RunContainerRunServeBuilder),
+    EntityPlugin(builder=TaskContainerBuildBuilder, runtime_builder=RuntimeContainerBuilder),
+    EntityPlugin(builder=TaskContainerJobBuilder, runtime_builder=RuntimeContainerBuilder),
+    EntityPlugin(builder=TaskContainerServeBuilder, runtime_builder=RuntimeContainerBuilder),
+    EntityPlugin(builder=RunContainerRunBuildBuilder, runtime_builder=RuntimeContainerBuilder),
+    EntityPlugin(builder=RunContainerRunJobBuilder, runtime_builder=RuntimeContainerBuilder),
+    EntityPlugin(builder=RunContainerRunServeBuilder, runtime_builder=RuntimeContainerBuilder),
 )

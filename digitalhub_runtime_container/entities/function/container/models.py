@@ -4,25 +4,16 @@
 
 from __future__ import annotations
 
-from pydantic import BaseModel
+from typing import ClassVar
+
+from digitalhub.entities._mixin.source.models import HandlerSourceCode
 
 
-class SourceValidator(BaseModel):
-    """
-    Source code params.
-    """
+class ContainerSourceCode(HandlerSourceCode):
+    """Source code model for container functions."""
 
-    source: str = None
-    "Pointer to source code."
+    REQUIRE_SOURCE: ClassVar[bool] = False
+    REQUIRE_HANDLER: ClassVar[bool] = False
 
-    handler: str = None
-    "Function entrypoint."
 
-    code: str = None
-    "Source code (plain text)."
-
-    base64: str = None
-    "Source code (base64 encoded)."
-
-    lang: str = None
-    "Source code language (hint)."
+SourceValidator = ContainerSourceCode

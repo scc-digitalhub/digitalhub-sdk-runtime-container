@@ -6,8 +6,4 @@ from __future__ import annotations
 
 from digitalhub_runtime_container.entities.run._base.status import RunStatusContainerRun
 
-
-class RunStatusContainerRunServe(RunStatusContainerRun):
-    """
-    RunStatusContainerRunServe status.
-    """
+RunStatusContainerRunServe = RunStatusContainerRun
