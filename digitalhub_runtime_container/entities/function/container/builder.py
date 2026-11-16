@@ -11,7 +11,6 @@ from digitalhub_runtime_container.entities._commons.enums import EntityKinds
 from digitalhub_runtime_container.entities.function.container.entity import FunctionContainer
 from digitalhub_runtime_container.entities.function.container.spec import (
     FunctionSpecContainer,
-    FunctionValidatorContainer,
 )
 from digitalhub_runtime_container.entities.function.container.status import FunctionStatusContainer
 from digitalhub_runtime_container.entities.function.container.utils import source_check, source_post_check
@@ -24,7 +23,6 @@ class FunctionContainerBuilder(FunctionBuilder, RuntimeEntityBuilderContainer):
 
     ENTITY_CLASS = FunctionContainer
     ENTITY_SPEC_CLASS = FunctionSpecContainer
-    ENTITY_SPEC_VALIDATOR = FunctionValidatorContainer
     ENTITY_STATUS_CLASS = FunctionStatusContainer
     ENTITY_KIND = EntityKinds.FUNCTION_CONTAINER.value
 

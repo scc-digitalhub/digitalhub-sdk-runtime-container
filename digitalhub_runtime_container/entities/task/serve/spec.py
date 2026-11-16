@@ -5,63 +5,21 @@
 from __future__ import annotations
 
 from digitalhub.entities.task._base.models import CorePort, CoreServiceType
-from digitalhub.entities.task._base.spec import TaskSpecFunction, TaskValidatorFunction
+from digitalhub.entities.task._base.spec import TaskSpecFunction
 from pydantic import Field
 
 
 class TaskSpecContainerServe(TaskSpecFunction):
-    """
-    TaskSpecContainerServe specifications.
-    """
-
-    def __init__(
-        self,
-        function: str,
-        volumes: list[dict] | None = None,
-        resources: dict | None = None,
-        envs: list[dict] | None = None,
-        secrets: list[str] | None = None,
-        profile: str | None = None,
-        replicas: int | None = None,
-        service_ports: list | None = None,
-        service_type: str | None = None,
-        service_name: str | None = None,
-        run_as_user: int | None = None,
-        run_as_group: int | None = None,
-        fs_group: int | None = None,
-        **kwargs,
-    ) -> None:
-        super().__init__(
-            function=function,
-            volumes=volumes,
-            resources=resources,
-            envs=envs,
-            secrets=secrets,
-            profile=profile,
-            **kwargs,
-        )
-        self.replicas = replicas
-        self.service_ports = service_ports
-        self.service_type = service_type
-        self.service_name = service_name
-        self.run_as_user = run_as_user
-        self.run_as_group = run_as_group
-        self.fs_group = fs_group
-
-
-class TaskValidatorContainerServe(TaskValidatorFunction):
-    """
-    TaskValidatorContainerServe validator.
-    """
+    """Specification for a container serving task."""
 
     replicas: int | None = Field(default=None, ge=0)
     """Number of replicas."""
 
-    service_type: CoreServiceType | None = None
-    """Service type."""
-
     service_ports: list[CorePort] | None = None
     """Service ports mapper."""
+
+    service_type: CoreServiceType | None = None
+    """Service type."""
 
     service_name: str | None = None
     """Service name."""

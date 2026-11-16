@@ -11,7 +11,6 @@ from digitalhub_runtime_container.entities._commons.enums import EntityKinds
 from digitalhub_runtime_container.entities.task.build.entity import TaskContainerBuild
 from digitalhub_runtime_container.entities.task.build.spec import (
     TaskSpecContainerBuild,
-    TaskValidatorContainerBuild,
 )
 from digitalhub_runtime_container.entities.task.build.status import TaskStatusContainerBuild
 
@@ -23,6 +22,5 @@ class TaskContainerBuildBuilder(TaskBuilder, RuntimeEntityBuilderContainer):
 
     ENTITY_CLASS = TaskContainerBuild
     ENTITY_SPEC_CLASS = TaskSpecContainerBuild
-    ENTITY_SPEC_VALIDATOR = TaskValidatorContainerBuild
     ENTITY_STATUS_CLASS = TaskStatusContainerBuild
     ENTITY_KIND = EntityKinds.TASK_CONTAINER_BUILD.value

@@ -4,12 +4,8 @@
 
 from __future__ import annotations
 
-from digitalhub_runtime_container.entities.run._base.spec import RunSpecContainerRun, RunValidatorContainerRun
+from digitalhub_runtime_container.entities.run._base.spec import RunSpecContainerRun
 
 
 class RunSpecContainerRunJob(RunSpecContainerRun):
     """RunSpecContainerRunJob specifications."""
-
-
-class RunValidatorContainerRunJob(RunValidatorContainerRun):
-    """RunValidatorContainerRunJob validator."""

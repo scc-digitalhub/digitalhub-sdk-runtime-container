@@ -54,10 +54,7 @@
       },
       "image": "debian:1.22.04",
       "base_image": "debian:1.22.04",
-      "command": "python",
-      "instructions": [
-        "apt-get update"
-      ]
+      "command": "python"
     },
     "status": {
       "transitions": [

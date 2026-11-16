@@ -4,41 +4,11 @@
 
 from __future__ import annotations
 
-from digitalhub.entities.task._base.spec import TaskSpecFunction, TaskValidatorFunction
+from digitalhub.entities.task._base.spec import TaskSpecFunction
 
 
 class TaskSpecContainerBuild(TaskSpecFunction):
-    """
-    TaskSpecContainerBuild specifications.
-    """
-
-    def __init__(
-        self,
-        function: str,
-        volumes: list[dict] | None = None,
-        resources: dict | None = None,
-        envs: list[dict] | None = None,
-        secrets: list[str] | None = None,
-        profile: str | None = None,
-        instructions: list | None = None,
-        **kwargs,
-    ) -> None:
-        super().__init__(
-            function=function,
-            volumes=volumes,
-            resources=resources,
-            envs=envs,
-            secrets=secrets,
-            profile=profile,
-            **kwargs,
-        )
-        self.instructions = instructions
-
-
-class TaskValidatorContainerBuild(TaskValidatorFunction):
-    """
-    TaskValidatorContainerBuild validator.
-    """
+    """Specification for a container build task."""
 
     instructions: list[str] | None = None
     """Build instructions."""

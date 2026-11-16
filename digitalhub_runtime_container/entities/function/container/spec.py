@@ -4,44 +4,20 @@
 
 from __future__ import annotations
 
-from digitalhub.entities.function._base.spec import FunctionSpec, FunctionValidator
+from digitalhub.entities.function._base.spec import FunctionSpec
 from digitalhub.entities.task._base.models import CorePullPolicy
 
 from digitalhub_runtime_container.entities.function.container.models import SourceValidator
 
 
 class FunctionSpecContainer(FunctionSpec):
-    """
-    FunctionSpecContainer specifications.
-    """
-
-    def __init__(
-        self,
-        image: str | None = None,
-        base_image: str | None = None,
-        image_pull_policy: str | None = None,
-        command: str | None = None,
-        source: dict | None = None,
-    ) -> None:
-        super().__init__()
-
-        self.image = image
-        self.base_image = base_image
-        self.image_pull_policy = image_pull_policy
-        self.command = command
-        self.source = source
-
-
-class FunctionValidatorContainer(FunctionValidator):
-    """
-    FunctionValidatorContainer validator.
-    """
+    """Function specification for container functions."""
 
     image: str | None = None
-    """Name of the Function's container image."""
+    """Name of the function's container image."""
 
     base_image: str | None = None
-    """Function's base container image."""
+    """Base image used to build the function image."""
 
     image_pull_policy: CorePullPolicy | None = None
     """Function's container image pull policy."""
@@ -50,4 +26,4 @@ class FunctionValidatorContainer(FunctionValidator):
     """Command to run inside the container."""
 
     source: SourceValidator | None = None
-    """Source code params."""
+    """Source code parameters."""

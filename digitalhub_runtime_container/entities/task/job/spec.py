@@ -4,46 +4,12 @@
 
 from __future__ import annotations
 
-from digitalhub.entities.task._base.spec import TaskSpecFunction, TaskValidatorFunction
+from digitalhub.entities.task._base.spec import TaskSpecFunction
 from pydantic import Field
 
 
 class TaskSpecContainerJob(TaskSpecFunction):
-    """
-    TaskSpecContainerJob specifications.
-    """
-
-    def __init__(
-        self,
-        function: str,
-        volumes: list[dict] | None = None,
-        resources: dict | None = None,
-        envs: list[dict] | None = None,
-        secrets: list[str] | None = None,
-        profile: str | None = None,
-        run_as_user: int | None = None,
-        run_as_group: int | None = None,
-        fs_group: int | None = None,
-        **kwargs,
-    ) -> None:
-        super().__init__(
-            function=function,
-            volumes=volumes,
-            resources=resources,
-            envs=envs,
-            secrets=secrets,
-            profile=profile,
-            **kwargs,
-        )
-        self.run_as_user = run_as_user
-        self.run_as_group = run_as_group
-        self.fs_group = fs_group
-
-
-class TaskValidatorContainerJob(TaskValidatorFunction):
-    """
-    TaskValidatorContainerJob validator.
-    """
+    """Specification for a container job task."""
 
     run_as_user: int | None = Field(default=None, ge=0)
     """RunAsUser."""
