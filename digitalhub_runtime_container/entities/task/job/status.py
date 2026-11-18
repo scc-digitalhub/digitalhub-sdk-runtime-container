@@ -4,15 +4,15 @@
 
 from __future__ import annotations
 
-from digitalhub.entities.task._base.status import TaskStatus
+from digitalhub.entities._base.entity.status import Status
 
-TaskStatusContainerJob = TaskStatus
-
-
-TaskStatusContainerDeploy = TaskStatus
+TaskStatusContainerJob = Status
 
 
-TaskStatusContainerServe = TaskStatus
+TaskStatusContainerDeploy = Status
 
 
-TaskStatusContainerBuild = TaskStatus
+TaskStatusContainerServe = Status
+
+
+TaskStatusContainerBuild = Status

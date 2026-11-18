@@ -15,8 +15,9 @@ from digitalhub.utils.generic_utils import read_source
 from digitalhub_runtime_container.entities._commons.enums import Actions
 
 if typing.TYPE_CHECKING:
+    from digitalhub.entities._base.entity.status import Status
+
     from digitalhub_runtime_container.entities.function.container.spec import FunctionSpecContainer
-    from digitalhub_runtime_container.entities.function.container.status import FunctionStatusContainer
 
 
 class FunctionContainer(SourceEntityMixin, Function):
@@ -28,7 +29,7 @@ class FunctionContainer(SourceEntityMixin, Function):
         super().__init__(*args, **kwargs)
 
         self.spec: FunctionSpecContainer
-        self.status: FunctionStatusContainer
+        self.status: Status
 
     def _is_inlineable_source(self, path: str) -> bool:
         return not eval_zip_type(path)

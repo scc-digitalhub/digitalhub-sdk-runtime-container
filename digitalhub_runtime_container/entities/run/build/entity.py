@@ -9,8 +9,8 @@ import typing
 from digitalhub_runtime_container.entities.run._base.entity import RunContainerRun
 
 if typing.TYPE_CHECKING:
+    from digitalhub_runtime_container.entities.run._base.status import RunStatusContainerRun
     from digitalhub_runtime_container.entities.run.build.spec import RunSpecContainerRunBuild
-    from digitalhub_runtime_container.entities.run.build.status import RunStatusContainerRunBuild
 
 
 class RunContainerRunBuild(RunContainerRun):
@@ -22,7 +22,7 @@ class RunContainerRunBuild(RunContainerRun):
         super().__init__(*args, **kwargs)
 
         self.spec: RunSpecContainerRunBuild
-        self.status: RunStatusContainerRunBuild
+        self.status: RunStatusContainerRun
 
     @property
     def image(self) -> str | None:

@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from digitalhub.entities.function._base.spec import FunctionSpec
+from digitalhub.entities._base.entity.spec import Spec
 from digitalhub.entities.task._base.models import CorePullPolicy
 
 from digitalhub_runtime_container.entities.function.container.models import ContainerSourceCode
 
 
-class FunctionSpecContainer(FunctionSpec):
+class FunctionSpecContainer(Spec):
     """Function specification for container functions."""
 
     image: str | None = None

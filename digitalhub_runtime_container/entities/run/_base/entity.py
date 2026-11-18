@@ -32,7 +32,12 @@ class RunContainerRun(Run):
         self.spec: RunSpecContainerRun
         self.status: RunStatusContainerRun
 
-    def wait(self, log_info: bool = True) -> Run:
+    def wait(
+        self,
+        log_info: bool = True,
+        timeout: float | None = None,
+        poll_interval: float = 5.0,
+    ) -> Run:
         """
         Wait for run to finish.
 
@@ -40,6 +45,10 @@ class RunContainerRun(Run):
         ----------
         log_info : bool
             If True, log information.
+        timeout : float | None
+            Maximum wait time in seconds.
+        poll_interval : float
+            Time between status checks in seconds.
 
         Returns
         -------
@@ -78,4 +87,8 @@ class RunContainerRun(Run):
 
             return self
 
-        return super().wait(log_info=log_info)
+        return super().wait(
+            log_info=log_info,
+            timeout=timeout,
+            poll_interval=poll_interval,
+        )
