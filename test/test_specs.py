@@ -1,10 +1,10 @@
 import pytest
 from digitalhub.entities._constructors.spec import build_spec
-from digitalhub.entities.task._base.models import CorePort
+from digitalhub.entities._frameworks.k8s.models import CorePort
 from pydantic import ValidationError
 
 from digitalhub_runtime_container.entities.function.container.builder import FunctionContainerBuilder
-from digitalhub_runtime_container.entities.function.container.models import SourceValidator
+from digitalhub_runtime_container.entities.function.container.models import ContainerSourceCode
 from digitalhub_runtime_container.entities.function.container.spec import FunctionSpecContainer
 from digitalhub_runtime_container.entities.run.build.spec import RunSpecContainerRunBuild
 from digitalhub_runtime_container.entities.run.job.spec import RunSpecContainerRunJob
@@ -21,7 +21,7 @@ def test_container_function_spec_validates_nested_source_and_pull_policy():
         image_pull_policy="Always",
     )
 
-    assert isinstance(spec.source, SourceValidator)
+    assert isinstance(spec.source, ContainerSourceCode)
     assert spec.image_pull_policy == "Always"
 
     with pytest.raises(ValidationError):
@@ -68,14 +68,16 @@ def test_container_task_specs_validate_runtime_fields_and_constraints():
 def test_container_run_specs_merge_only_action_fields():
     build = build_spec(
         RunSpecContainerRunBuild,
+        function="function",
         task="task",
         args=["--verbose"],
         image="image:latest",
         instructions=["apt-get update"],
     )
-    job = build_spec(RunSpecContainerRunJob, task="task", run_as_user=1000)
+    job = build_spec(RunSpecContainerRunJob, function="function", task="task", run_as_user=1000)
     serve = build_spec(
         RunSpecContainerRunServe,
+        function="function",
         task="task",
         service_type="ClusterIP",
         run_as_user=1000,
@@ -90,13 +92,15 @@ def test_container_run_specs_merge_only_action_fields():
     assert serve.replicas == 2
 
     with pytest.raises(TypeError, match="instructions"):
-        build_spec(RunSpecContainerRunJob, task="task", instructions=["apt-get update"])
+        build_spec(RunSpecContainerRunJob, function="function", task="task", instructions=["apt-get update"])
 
     with pytest.raises(TypeError, match="replicas"):
-        build_spec(RunSpecContainerRunJob, task="task", replicas=2)
+        build_spec(RunSpecContainerRunJob, function="function", task="task", replicas=2)
 
     with pytest.raises(TypeError, match="replicas"):
         build_spec(TaskSpecContainerBuild, function="function", replicas=2)
 
-    legacy = RunSpecContainerRunBuild.from_dict({"task": "task", "instructions": ["legacy build instruction"]})
+    legacy = RunSpecContainerRunBuild.from_dict(
+        {"function": "function", "task": "task", "instructions": ["legacy build instruction"]}
+    )
     assert legacy.to_dict()["instructions"] == ["legacy build instruction"]

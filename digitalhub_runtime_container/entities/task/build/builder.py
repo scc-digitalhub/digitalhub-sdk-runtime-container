@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+from digitalhub.entities._base.entity.status import Status
 from digitalhub.entities.task._base.builder import TaskBuilder
 
 from digitalhub_runtime_container.entities._base.runtime_entity.builder import RuntimeEntityBuilderContainer
@@ -12,7 +13,6 @@ from digitalhub_runtime_container.entities.task.build.entity import TaskContaine
 from digitalhub_runtime_container.entities.task.build.spec import (
     TaskSpecContainerBuild,
 )
-from digitalhub_runtime_container.entities.task.build.status import TaskStatusContainerBuild
 
 
 class TaskContainerBuildBuilder(TaskBuilder, RuntimeEntityBuilderContainer):
@@ -22,5 +22,5 @@ class TaskContainerBuildBuilder(TaskBuilder, RuntimeEntityBuilderContainer):
 
     ENTITY_CLASS = TaskContainerBuild
     ENTITY_SPEC_CLASS = TaskSpecContainerBuild
-    ENTITY_STATUS_CLASS = TaskStatusContainerBuild
+    ENTITY_STATUS_CLASS = Status
     ENTITY_KIND = EntityKinds.TASK_CONTAINER_BUILD.value

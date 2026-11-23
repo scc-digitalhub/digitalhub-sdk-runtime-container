@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from digitalhub.entities.task._base.spec import BuildSpecMixin
+from digitalhub.entities._mixin.execution.spec import BuildSpecMixin
 
 from digitalhub_runtime_container.entities.run._base.spec import RunSpecContainerRun
 

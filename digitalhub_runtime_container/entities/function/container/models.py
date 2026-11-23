@@ -14,6 +14,3 @@ class ContainerSourceCode(HandlerSourceCode):
 
     REQUIRE_SOURCE: ClassVar[bool] = False
     REQUIRE_HANDLER: ClassVar[bool] = False
-
-
-SourceValidator = ContainerSourceCode

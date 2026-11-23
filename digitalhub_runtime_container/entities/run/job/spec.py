@@ -4,8 +4,8 @@
 
 from __future__ import annotations
 
+from digitalhub_runtime_container.entities._mixin.execution.spec import ContainerRunAsSpecMixin
 from digitalhub_runtime_container.entities.run._base.spec import RunSpecContainerRun
-from digitalhub_runtime_container.entities.task.job.spec import ContainerRunAsSpecMixin
 
 
 class RunSpecContainerRunJob(RunSpecContainerRun, ContainerRunAsSpecMixin):

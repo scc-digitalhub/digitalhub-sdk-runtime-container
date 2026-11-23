@@ -9,8 +9,9 @@ import typing
 from digitalhub.entities.task._base.entity import Task
 
 if typing.TYPE_CHECKING:
+    from digitalhub.entities._base.entity.status import Status
+
     from digitalhub_runtime_container.entities.task.serve.spec import TaskSpecContainerServe
-    from digitalhub_runtime_container.entities.task.serve.status import TaskStatusContainerServe
 
 
 class TaskContainerServe(Task):
@@ -22,4 +23,4 @@ class TaskContainerServe(Task):
         super().__init__(*args, **kwargs)
 
         self.spec: TaskSpecContainerServe
-        self.status: TaskStatusContainerServe
+        self.status: Status

@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from digitalhub.entities._base.entity.spec import Spec
-from digitalhub.entities.task._base.models import CorePullPolicy
+from digitalhub.entities._frameworks.k8s.models import CorePullPolicy
 
 from digitalhub_runtime_container.entities.function.container.models import ContainerSourceCode
 

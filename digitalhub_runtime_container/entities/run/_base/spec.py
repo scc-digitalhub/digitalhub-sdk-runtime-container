@@ -4,10 +4,10 @@
 
 from __future__ import annotations
 
-from digitalhub.entities.run._base.spec import RunSpec
+from digitalhub.entities.run._base.spec import RunSpecFunction
 
 
-class RunSpecContainerRun(RunSpec):
+class RunSpecContainerRun(RunSpecFunction):
     """Specification shared by container runs."""
 
     args: list[str] | None = None
