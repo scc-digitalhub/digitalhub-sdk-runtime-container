@@ -8,7 +8,7 @@ import typing
 
 from digitalhub.entities.function.crud import new_function
 
-from digitalhub_runtime_container.entities.function.container.builder import FunctionContainerBuilder
+from digitalhub_runtime_container.entities._commons.enums import EntityKinds
 
 if typing.TYPE_CHECKING:
     from digitalhub.plugins import CorePullPolicy
@@ -95,7 +95,7 @@ def new_function_container(
     return new_function(
         project=project,
         name=name,
-        kind=FunctionContainerBuilder.ENTITY_KIND,
+        kind=EntityKinds.FUNCTION_CONTAINER.value,
         uuid=uuid,
         version=version,
         description=description,

@@ -2,33 +2,89 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-from digitalhub.plugins import CrudPlugin, EntityPlugin
+from digitalhub.plugins import (
+    Action,
+    BuilderDef,
+    CrudPlugin,
+    ExecFamily,
+    FunctionBuilder,
+    RunBuilder,
+    SourceBuilderMixin,
+    Status,
+    TaskBuilder,
+)
 
-from digitalhub_runtime_container.entities.function.container.builder import FunctionContainerBuilder
+from digitalhub_runtime_container.entities._commons.enums import Actions, EntityKinds
 from digitalhub_runtime_container.entities.function.container.crud import new_function_container
-from digitalhub_runtime_container.entities.run.build.builder import RunContainerRunBuildBuilder
-from digitalhub_runtime_container.entities.run.job.builder import RunContainerRunJobBuilder
-from digitalhub_runtime_container.entities.run.serve.builder import RunContainerRunServeBuilder
-from digitalhub_runtime_container.entities.task.build.builder import TaskContainerBuildBuilder
-from digitalhub_runtime_container.entities.task.job.builder import TaskContainerJobBuilder
-from digitalhub_runtime_container.entities.task.serve.builder import TaskContainerServeBuilder
+from digitalhub_runtime_container.entities.function.container.entity import FunctionContainer
+from digitalhub_runtime_container.entities.function.container.spec import FunctionSpecContainer
+from digitalhub_runtime_container.entities.run._base.status import RunStatusContainerRun
+from digitalhub_runtime_container.entities.run.build.entity import RunContainerRunBuild
+from digitalhub_runtime_container.entities.run.build.spec import RunSpecContainerRunBuild
+from digitalhub_runtime_container.entities.run.job.entity import RunContainerRunJob
+from digitalhub_runtime_container.entities.run.job.spec import RunSpecContainerRunJob
+from digitalhub_runtime_container.entities.run.serve.entity import RunContainerRunServe
+from digitalhub_runtime_container.entities.run.serve.spec import RunSpecContainerRunServe
+from digitalhub_runtime_container.entities.task.build.entity import TaskContainerBuild
+from digitalhub_runtime_container.entities.task.build.spec import TaskSpecContainerBuild
+from digitalhub_runtime_container.entities.task.job.entity import TaskContainerJob
+from digitalhub_runtime_container.entities.task.job.spec import TaskSpecContainerJob
+from digitalhub_runtime_container.entities.task.serve.entity import TaskContainerServe
+from digitalhub_runtime_container.entities.task.serve.spec import TaskSpecContainerServe
 
 # Imported on first use: the entities register even when the runtime cannot be
 # imported, and the import error is reported when a run executes locally.
 RUNTIME_CONTAINER_BUILDER = "digitalhub_runtime_container.runtimes.builder:RuntimeContainerBuilder"
 
-function_container_plugin = EntityPlugin(
-    builder=FunctionContainerBuilder,
-    shortcuts=(CrudPlugin(new_function_container),),
+container = ExecFamily(
+    executable=BuilderDef(
+        EntityKinds.FUNCTION_CONTAINER,
+        FunctionContainer,
+        FunctionSpecContainer,
+        Status,
+        base=FunctionBuilder,
+        mixins=(SourceBuilderMixin,),
+        shortcuts=(CrudPlugin(new_function_container),),
+    ),
+    actions={
+        Actions.BUILD: Action(
+            task=BuilderDef(
+                EntityKinds.TASK_CONTAINER_BUILD, TaskContainerBuild, TaskSpecContainerBuild, Status, base=TaskBuilder
+            ),
+            run=BuilderDef(
+                EntityKinds.RUN_CONTAINER_BUILD,
+                RunContainerRunBuild,
+                RunSpecContainerRunBuild,
+                RunStatusContainerRun,
+                base=RunBuilder,
+            ),
+        ),
+        Actions.JOB: Action(
+            task=BuilderDef(
+                EntityKinds.TASK_CONTAINER_JOB, TaskContainerJob, TaskSpecContainerJob, Status, base=TaskBuilder
+            ),
+            run=BuilderDef(
+                EntityKinds.RUN_CONTAINER_JOB,
+                RunContainerRunJob,
+                RunSpecContainerRunJob,
+                RunStatusContainerRun,
+                base=RunBuilder,
+            ),
+        ),
+        Actions.SERVE: Action(
+            task=BuilderDef(
+                EntityKinds.TASK_CONTAINER_SERVE, TaskContainerServe, TaskSpecContainerServe, Status, base=TaskBuilder
+            ),
+            run=BuilderDef(
+                EntityKinds.RUN_CONTAINER_SERVE,
+                RunContainerRunServe,
+                RunSpecContainerRunServe,
+                RunStatusContainerRun,
+                base=RunBuilder,
+            ),
+        ),
+    },
     runtime_builder=RUNTIME_CONTAINER_BUILDER,
 )
 
-entity_plugins = (
-    function_container_plugin,
-    EntityPlugin(builder=TaskContainerBuildBuilder, runtime_builder=RUNTIME_CONTAINER_BUILDER),
-    EntityPlugin(builder=TaskContainerJobBuilder, runtime_builder=RUNTIME_CONTAINER_BUILDER),
-    EntityPlugin(builder=TaskContainerServeBuilder, runtime_builder=RUNTIME_CONTAINER_BUILDER),
-    EntityPlugin(builder=RunContainerRunBuildBuilder, runtime_builder=RUNTIME_CONTAINER_BUILDER),
-    EntityPlugin(builder=RunContainerRunJobBuilder, runtime_builder=RUNTIME_CONTAINER_BUILDER),
-    EntityPlugin(builder=RunContainerRunServeBuilder, runtime_builder=RUNTIME_CONTAINER_BUILDER),
-)
+entity_plugins = (*container.plugins(),)

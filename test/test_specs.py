@@ -1,8 +1,9 @@
 import pytest
+from digitalhub.factory.registry import registry
 from digitalhub.plugins import CorePort, build_spec
 from pydantic import ValidationError
 
-from digitalhub_runtime_container.entities.function.container.builder import FunctionContainerBuilder
+from digitalhub_runtime_container.entities._commons.enums import EntityKinds
 from digitalhub_runtime_container.entities.function.container.models import ContainerSourceCode
 from digitalhub_runtime_container.entities.function.container.spec import FunctionSpecContainer
 from digitalhub_runtime_container.entities.run.build.spec import RunSpecContainerRunBuild
@@ -28,7 +29,7 @@ def test_container_function_spec_validates_nested_source_and_pull_policy():
 
 
 def test_container_builder_routes_top_level_source_arguments():
-    builder = FunctionContainerBuilder()
+    builder = registry.get_entity_builder(EntityKinds.FUNCTION_CONTAINER.value)
 
     function = builder.build(
         kind=builder.ENTITY_KIND,
