@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from typing import ClassVar
 
-from digitalhub.entities._mixin.source.models import HandlerSourceCode
+from digitalhub.plugins import HandlerSourceCode
 
 
 class ContainerSourceCode(HandlerSourceCode):

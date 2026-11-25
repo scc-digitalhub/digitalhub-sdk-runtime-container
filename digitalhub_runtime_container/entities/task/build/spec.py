@@ -4,8 +4,7 @@
 
 from __future__ import annotations
 
-from digitalhub.entities._mixin.execution.spec import BuildSpecMixin
-from digitalhub.entities.task._base.spec import TaskSpecFunction
+from digitalhub.plugins import BuildSpecMixin, TaskSpecFunction
 
 
 class TaskSpecContainerBuild(TaskSpecFunction, BuildSpecMixin):

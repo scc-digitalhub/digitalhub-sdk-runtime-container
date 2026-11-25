@@ -4,8 +4,7 @@
 
 from __future__ import annotations
 
-from digitalhub.entities._mixin.execution.spec import ServeSpecMixin
-from digitalhub.entities.task._base.spec import TaskSpecFunction
+from digitalhub.plugins import ServeSpecMixin, TaskSpecFunction
 
 from digitalhub_runtime_container.entities._mixin.execution.spec import ContainerRunAsSpecMixin
 

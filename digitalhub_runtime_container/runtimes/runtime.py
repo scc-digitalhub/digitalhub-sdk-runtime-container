@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from digitalhub.runtimes._base import Runtime
+from digitalhub.plugins import Runtime
 
 
 class RuntimeContainer(Runtime):

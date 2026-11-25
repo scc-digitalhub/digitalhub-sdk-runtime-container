@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from digitalhub.entities.run._base.spec import RunSpecFunction
+from digitalhub.plugins import RunSpecFunction
 
 
 class RunSpecContainerRun(RunSpecFunction):

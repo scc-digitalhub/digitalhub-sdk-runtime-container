@@ -6,10 +6,10 @@ from __future__ import annotations
 
 import typing
 
-from digitalhub.entities.task._base.entity import Task
+from digitalhub.plugins import Task
 
 if typing.TYPE_CHECKING:
-    from digitalhub.entities._base.entity.status import Status
+    from digitalhub.plugins import Status
 
     from digitalhub_runtime_container.entities.task.build.spec import TaskSpecContainerBuild
 

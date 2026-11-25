@@ -6,8 +6,7 @@ from __future__ import annotations
 
 import typing
 
-from digitalhub.entities._mixin.source.entity import SourceEntityMixin
-from digitalhub.entities.function._base.entity import Function
+from digitalhub.plugins import Function, SourceEntityMixin
 from digitalhub.utils.exceptions import EntityError
 from digitalhub.utils.file_utils import eval_zip_type
 from digitalhub.utils.generic_utils import read_source
@@ -15,7 +14,7 @@ from digitalhub.utils.generic_utils import read_source
 from digitalhub_runtime_container.entities._commons.enums import Actions
 
 if typing.TYPE_CHECKING:
-    from digitalhub.entities._base.entity.status import Status
+    from digitalhub.plugins import Status
 
     from digitalhub_runtime_container.entities.function.container.spec import FunctionSpecContainer
 

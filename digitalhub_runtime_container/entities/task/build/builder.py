@@ -4,8 +4,7 @@
 
 from __future__ import annotations
 
-from digitalhub.entities._base.entity.status import Status
-from digitalhub.entities.task._base.builder import TaskBuilder
+from digitalhub.plugins import Status, TaskBuilder
 
 from digitalhub_runtime_container.entities._base.runtime_entity.builder import RuntimeEntityBuilderContainer
 from digitalhub_runtime_container.entities._commons.enums import EntityKinds

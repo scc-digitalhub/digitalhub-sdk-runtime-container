@@ -1,6 +1,5 @@
 import pytest
-from digitalhub.entities._constructors.spec import build_spec
-from digitalhub.entities._frameworks.k8s.models import CorePort
+from digitalhub.plugins import CorePort, build_spec
 from pydantic import ValidationError
 
 from digitalhub_runtime_container.entities.function.container.builder import FunctionContainerBuilder

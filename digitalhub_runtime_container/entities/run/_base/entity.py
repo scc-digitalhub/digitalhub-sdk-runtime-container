@@ -7,9 +7,8 @@ from __future__ import annotations
 import time
 import typing
 
-from digitalhub.entities._commons.enums import State
-from digitalhub.entities.run._base.entity import Run
 from digitalhub.factory.entity import entity_factory
+from digitalhub.plugins import Run, State
 from digitalhub.utils.logger.logger import get_logger
 
 from digitalhub_runtime_container.entities._commons.enums import Actions

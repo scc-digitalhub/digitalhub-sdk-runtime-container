@@ -11,7 +11,7 @@ from digitalhub.entities.function.crud import new_function
 from digitalhub_runtime_container.entities.function.container.builder import FunctionContainerBuilder
 
 if typing.TYPE_CHECKING:
-    from digitalhub.entities._frameworks.k8s.models import CorePullPolicy
+    from digitalhub.plugins import CorePullPolicy
 
     from digitalhub_runtime_container.entities.function.container.entity import FunctionContainer
 
