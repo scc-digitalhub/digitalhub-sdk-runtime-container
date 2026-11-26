@@ -8,7 +8,7 @@ import time
 import typing
 
 from digitalhub.factory.entity import entity_factory
-from digitalhub.plugins import Run, State
+from digitalhub.plugins import EntityRef, Run, State
 from digitalhub.utils.logger.logger import get_logger
 
 from digitalhub_runtime_container.entities._commons.enums import Actions
@@ -54,7 +54,7 @@ class RunContainerRun(Run):
         Run
             Run object.
         """
-        task_kind = self.spec.task.split("://")[0]
+        task_kind = EntityRef.parse(self.spec.task).kind
         action = entity_factory.get_action_from_task_kind(self.kind, task_kind)
 
         if action == Actions.SERVE.value:
