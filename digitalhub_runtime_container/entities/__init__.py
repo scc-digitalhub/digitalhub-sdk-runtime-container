@@ -5,12 +5,14 @@
 from digitalhub.plugins import (
     Action,
     BuilderDef,
+    BuildRun,
     CrudPlugin,
     ExecFamily,
     ExecutableActions,
     FunctionBuilder,
     Run,
     RunBuilder,
+    ServeRun,
     SourceBuilderMixin,
     Status,
     Task,
@@ -22,10 +24,8 @@ from digitalhub_runtime_container.entities.function.container.crud import new_fu
 from digitalhub_runtime_container.entities.function.container.entity import FunctionContainer
 from digitalhub_runtime_container.entities.function.container.spec import FunctionSpecContainer
 from digitalhub_runtime_container.entities.run._base.status import RunStatusContainerRun
-from digitalhub_runtime_container.entities.run.build.entity import RunContainerRunBuild
 from digitalhub_runtime_container.entities.run.build.spec import RunSpecContainerRunBuild
 from digitalhub_runtime_container.entities.run.job.spec import RunSpecContainerRunJob
-from digitalhub_runtime_container.entities.run.serve.entity import RunContainerRunServe
 from digitalhub_runtime_container.entities.run.serve.spec import RunSpecContainerRunServe
 from digitalhub_runtime_container.entities.task.build.spec import TaskSpecContainerBuild
 from digitalhub_runtime_container.entities.task.job.spec import TaskSpecContainerJob
@@ -50,7 +50,7 @@ container = ExecFamily(
             task=BuilderDef(EntityKinds.TASK_CONTAINER_BUILD, Task, TaskSpecContainerBuild, Status, base=TaskBuilder),
             run=BuilderDef(
                 EntityKinds.RUN_CONTAINER_BUILD,
-                RunContainerRunBuild,
+                BuildRun,
                 RunSpecContainerRunBuild,
                 RunStatusContainerRun,
                 base=RunBuilder,
@@ -70,7 +70,7 @@ container = ExecFamily(
             task=BuilderDef(EntityKinds.TASK_CONTAINER_SERVE, Task, TaskSpecContainerServe, Status, base=TaskBuilder),
             run=BuilderDef(
                 EntityKinds.RUN_CONTAINER_SERVE,
-                RunContainerRunServe,
+                ServeRun,
                 RunSpecContainerRunServe,
                 RunStatusContainerRun,
                 base=RunBuilder,
