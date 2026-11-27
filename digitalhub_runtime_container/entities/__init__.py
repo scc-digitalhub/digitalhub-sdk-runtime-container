@@ -7,6 +7,7 @@ from digitalhub.plugins import (
     BuilderDef,
     CrudPlugin,
     ExecFamily,
+    ExecutableActions,
     FunctionBuilder,
     RunBuilder,
     SourceBuilderMixin,
@@ -45,7 +46,7 @@ container = ExecFamily(
         shortcuts=(CrudPlugin(new_function_container),),
     ),
     actions={
-        Actions.BUILD: Action(
+        ExecutableActions.BUILD: Action(
             task=BuilderDef(EntityKinds.TASK_CONTAINER_BUILD, Task, TaskSpecContainerBuild, Status, base=TaskBuilder),
             run=BuilderDef(
                 EntityKinds.RUN_CONTAINER_BUILD,

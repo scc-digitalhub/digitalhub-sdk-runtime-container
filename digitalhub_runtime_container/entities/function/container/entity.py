@@ -6,12 +6,10 @@ from __future__ import annotations
 
 import typing
 
-from digitalhub.plugins import Function, SourceEntityMixin
+from digitalhub.plugins import ExecutableBuildMixin, Function, SourceEntityMixin
 from digitalhub.utils.exceptions import EntityError
 from digitalhub.utils.file_utils import eval_zip_type
 from digitalhub.utils.generic_utils import read_source
-
-from digitalhub_runtime_container.entities._commons.enums import Actions
 
 if typing.TYPE_CHECKING:
     from digitalhub.plugins import Status
@@ -19,7 +17,7 @@ if typing.TYPE_CHECKING:
     from digitalhub_runtime_container.entities.function.container.spec import FunctionSpecContainer
 
 
-class FunctionContainer(SourceEntityMixin, Function):
+class FunctionContainer(SourceEntityMixin, ExecutableBuildMixin, Function):
     """
     FunctionContainer class.
     """
@@ -38,80 +36,3 @@ class FunctionContainer(SourceEntityMixin, Function):
             return read_source(path)
         except (OSError, UnicodeError) as error:
             raise EntityError(f"Error reading source {path}: {error}") from error
-
-    def build(
-        self,
-        wait: bool = True,
-        log_info: bool = True,
-        extensions: list[dict] | None = None,
-        **kwargs,
-    ):
-        """
-        Build the function using the build action.
-
-        Parameters
-        ----------
-        wait : bool
-            Whether to wait for the build to complete.
-        log_info : bool
-            Whether to log information while waiting.
-        extensions : list[dict] | None
-            List of extensions to apply.
-        **kwargs : dict
-            Keyword arguments passed to the run builder.
-
-        Returns
-        -------
-        Run
-            Build run instance.
-        """
-        return super().run(
-            Actions.BUILD.value,
-            wait=wait,
-            log_info=log_info,
-            extensions=extensions,
-            **kwargs,
-        )
-
-    def run(
-        self,
-        action: str,
-        wait: bool = False,
-        log_info: bool = True,
-        extensions: list[dict] | None = None,
-        auto_build: bool = False,
-        **kwargs,
-    ):
-        """
-        Run the function, building it first when no image is available.
-
-        Parameters
-        ----------
-        action : str
-            Action to execute.
-        wait : bool
-            Whether to wait for execution to complete.
-        log_info : bool
-            Whether to log information while waiting.
-        extensions : list[dict] | None
-            List of extensions to apply.
-        auto_build : bool
-            Whether to build the function when ``spec.image`` is ``None``.
-        **kwargs : dict
-            Keyword arguments passed to the run builder.
-
-        Returns
-        -------
-        Run
-            Run instance.
-        """
-        if auto_build and self.spec.image is None:
-            self.build(wait=True, log_info=log_info)
-
-        return super().run(
-            action,
-            wait=wait,
-            log_info=log_info,
-            extensions=extensions,
-            **kwargs,
-        )
