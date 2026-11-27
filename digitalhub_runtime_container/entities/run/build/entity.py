@@ -6,14 +6,14 @@ from __future__ import annotations
 
 import typing
 
-from digitalhub_runtime_container.entities.run._base.entity import RunContainerRun
+from digitalhub.plugins import Run
 
 if typing.TYPE_CHECKING:
     from digitalhub_runtime_container.entities.run._base.status import RunStatusContainerRun
     from digitalhub_runtime_container.entities.run.build.spec import RunSpecContainerRunBuild
 
 
-class RunContainerRunBuild(RunContainerRun):
+class RunContainerRunBuild(Run):
     """
     RunContainerRunBuild class.
     """

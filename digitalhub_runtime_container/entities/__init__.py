@@ -9,6 +9,7 @@ from digitalhub.plugins import (
     ExecFamily,
     ExecutableActions,
     FunctionBuilder,
+    Run,
     RunBuilder,
     SourceBuilderMixin,
     Status,
@@ -20,7 +21,6 @@ from digitalhub_runtime_container.entities._commons.enums import Actions, Entity
 from digitalhub_runtime_container.entities.function.container.crud import new_function_container
 from digitalhub_runtime_container.entities.function.container.entity import FunctionContainer
 from digitalhub_runtime_container.entities.function.container.spec import FunctionSpecContainer
-from digitalhub_runtime_container.entities.run._base.entity import RunContainerRun
 from digitalhub_runtime_container.entities.run._base.status import RunStatusContainerRun
 from digitalhub_runtime_container.entities.run.build.entity import RunContainerRunBuild
 from digitalhub_runtime_container.entities.run.build.spec import RunSpecContainerRunBuild
@@ -60,13 +60,13 @@ container = ExecFamily(
             task=BuilderDef(EntityKinds.TASK_CONTAINER_JOB, Task, TaskSpecContainerJob, Status, base=TaskBuilder),
             run=BuilderDef(
                 EntityKinds.RUN_CONTAINER_JOB,
-                RunContainerRun,
+                Run,
                 RunSpecContainerRunJob,
                 RunStatusContainerRun,
                 base=RunBuilder,
             ),
         ),
-        Actions.SERVE: Action(
+        ExecutableActions.SERVE: Action(
             task=BuilderDef(EntityKinds.TASK_CONTAINER_SERVE, Task, TaskSpecContainerServe, Status, base=TaskBuilder),
             run=BuilderDef(
                 EntityKinds.RUN_CONTAINER_SERVE,
