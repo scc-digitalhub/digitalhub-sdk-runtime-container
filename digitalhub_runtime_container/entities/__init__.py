@@ -11,6 +11,7 @@ from digitalhub.plugins import (
     RunBuilder,
     SourceBuilderMixin,
     Status,
+    Task,
     TaskBuilder,
 )
 
@@ -18,18 +19,15 @@ from digitalhub_runtime_container.entities._commons.enums import Actions, Entity
 from digitalhub_runtime_container.entities.function.container.crud import new_function_container
 from digitalhub_runtime_container.entities.function.container.entity import FunctionContainer
 from digitalhub_runtime_container.entities.function.container.spec import FunctionSpecContainer
+from digitalhub_runtime_container.entities.run._base.entity import RunContainerRun
 from digitalhub_runtime_container.entities.run._base.status import RunStatusContainerRun
 from digitalhub_runtime_container.entities.run.build.entity import RunContainerRunBuild
 from digitalhub_runtime_container.entities.run.build.spec import RunSpecContainerRunBuild
-from digitalhub_runtime_container.entities.run.job.entity import RunContainerRunJob
 from digitalhub_runtime_container.entities.run.job.spec import RunSpecContainerRunJob
 from digitalhub_runtime_container.entities.run.serve.entity import RunContainerRunServe
 from digitalhub_runtime_container.entities.run.serve.spec import RunSpecContainerRunServe
-from digitalhub_runtime_container.entities.task.build.entity import TaskContainerBuild
 from digitalhub_runtime_container.entities.task.build.spec import TaskSpecContainerBuild
-from digitalhub_runtime_container.entities.task.job.entity import TaskContainerJob
 from digitalhub_runtime_container.entities.task.job.spec import TaskSpecContainerJob
-from digitalhub_runtime_container.entities.task.serve.entity import TaskContainerServe
 from digitalhub_runtime_container.entities.task.serve.spec import TaskSpecContainerServe
 
 # Imported on first use: the entities register even when the runtime cannot be
@@ -48,9 +46,7 @@ container = ExecFamily(
     ),
     actions={
         Actions.BUILD: Action(
-            task=BuilderDef(
-                EntityKinds.TASK_CONTAINER_BUILD, TaskContainerBuild, TaskSpecContainerBuild, Status, base=TaskBuilder
-            ),
+            task=BuilderDef(EntityKinds.TASK_CONTAINER_BUILD, Task, TaskSpecContainerBuild, Status, base=TaskBuilder),
             run=BuilderDef(
                 EntityKinds.RUN_CONTAINER_BUILD,
                 RunContainerRunBuild,
@@ -60,21 +56,17 @@ container = ExecFamily(
             ),
         ),
         Actions.JOB: Action(
-            task=BuilderDef(
-                EntityKinds.TASK_CONTAINER_JOB, TaskContainerJob, TaskSpecContainerJob, Status, base=TaskBuilder
-            ),
+            task=BuilderDef(EntityKinds.TASK_CONTAINER_JOB, Task, TaskSpecContainerJob, Status, base=TaskBuilder),
             run=BuilderDef(
                 EntityKinds.RUN_CONTAINER_JOB,
-                RunContainerRunJob,
+                RunContainerRun,
                 RunSpecContainerRunJob,
                 RunStatusContainerRun,
                 base=RunBuilder,
             ),
         ),
         Actions.SERVE: Action(
-            task=BuilderDef(
-                EntityKinds.TASK_CONTAINER_SERVE, TaskContainerServe, TaskSpecContainerServe, Status, base=TaskBuilder
-            ),
+            task=BuilderDef(EntityKinds.TASK_CONTAINER_SERVE, Task, TaskSpecContainerServe, Status, base=TaskBuilder),
             run=BuilderDef(
                 EntityKinds.RUN_CONTAINER_SERVE,
                 RunContainerRunServe,
