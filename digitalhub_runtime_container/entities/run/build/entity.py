@@ -6,14 +6,14 @@ from __future__ import annotations
 
 import typing
 
-from digitalhub.plugins import Run
+from digitalhub.plugins import BuildRunMixin, Run
 
 if typing.TYPE_CHECKING:
     from digitalhub_runtime_container.entities.run._base.status import RunStatusContainerRun
     from digitalhub_runtime_container.entities.run.build.spec import RunSpecContainerRunBuild
 
 
-class RunContainerRunBuild(Run):
+class RunContainerRunBuild(BuildRunMixin, Run):
     """
     RunContainerRunBuild class.
     """
@@ -23,15 +23,3 @@ class RunContainerRunBuild(Run):
 
         self.spec: RunSpecContainerRunBuild
         self.status: RunStatusContainerRun
-
-    @property
-    def image(self) -> str | None:
-        """
-        Get run's image.
-
-        Returns
-        -------
-        str | None
-            The image.
-        """
-        return self.status.outputs.get("image")
